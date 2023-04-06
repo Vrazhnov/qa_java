@@ -7,11 +7,11 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class CreateLionTest {
+public class ParameterizedLionTest {
     private final String sex;
     private final boolean expectedHasMane;
 
-    public CreateLionTest(String sex, boolean expectedHasMane) {
+    public ParameterizedLionTest(String sex, boolean expectedHasMane) {
         this.sex = sex;
         this.expectedHasMane = expectedHasMane;
     }
@@ -31,7 +31,7 @@ public class CreateLionTest {
             boolean actualHasMane = lion.doesHaveMane();
             assertEquals(expectedHasMane, actualHasMane);
         } catch (Exception actual) {
-            assertEquals("Используйте допустимые значения пола животного - самец или самка", actual.getMessage());
+            assertEquals("Используйте допустимые значения пола животного - самей или самка", actual.getMessage());
         }
     }
 }
