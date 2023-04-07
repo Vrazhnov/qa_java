@@ -6,6 +6,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
 
@@ -24,5 +26,14 @@ public class LionTest {
         Lion lion = new Lion("Самец", feline);
         lion.getFood();
         Mockito.verify(feline).getFood("Хищник");
+    }
+
+    @Test
+    public void LionEntityExceptionTest() {
+        try {
+            Lion lion = new Lion("Самсамка", feline);
+        } catch (Exception actual) {
+            assertEquals("Используйте допустимые значения пола животного - самей или самка", actual.getMessage());
+        }
     }
 }

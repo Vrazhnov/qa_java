@@ -10,6 +10,9 @@ import static org.junit.Assert.assertEquals;
 public class ParameterizedLionTest {
     private final String sex;
     private final boolean expectedHasMane;
+    private Feline feline = new Feline();
+    Lion lion;
+
 
     public ParameterizedLionTest(String sex, boolean expectedHasMane) {
         this.sex = sex;
@@ -19,19 +22,15 @@ public class ParameterizedLionTest {
     @Parameterized.Parameters
     public static Object[][] getData() {
         return new Object[][]{
-                {"Самец", true}, {"Самка", false}, {"Самсамка", false}
+                {"Самец", true}, {"Самка", false},
         };
     }
 
     @Test
-    public void createLionEntityTest() {
-        Lion lion;
-        try {
-            lion = new Lion(sex, new Feline());
+    public void createLionEntityTest() throws Exception {
+            lion = new Lion(sex, feline);
             boolean actualHasMane = lion.doesHaveMane();
             assertEquals(expectedHasMane, actualHasMane);
-        } catch (Exception actual) {
-            assertEquals("Используйте допустимые значения пола животного - самей или самка", actual.getMessage());
-        }
     }
+
 }
